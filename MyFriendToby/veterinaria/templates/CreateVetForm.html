@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="./CreateVetForm.css">
+</head>
+<body>
+  <article class='create-account--form-container'>
+    <div class='create-account--logo-container' onClick={handleShowHome}>
+      <img src='./public/logo.png' alt='Logotipo de la pagina web' />
+    </div>
+    <form class='create-account-form create-account--vet-form' onSubmit={validateData}>
+      <label class='form-label'>
+        <span>Razon social de la veterinaria</span>
+        <input
+          type='text'
+          name='businessName'
+        />
+      </label>
+      <label class='form-label'>
+        <span>Nombre comercial</span>
+        <input
+          type='text'
+          name='tradeName'
+        />
+      </label>
+      <label class='form-label'>
+        <span>Nit</span>
+        <input
+          type='text'
+          name='nit'
+        />
+      </label>
+      <label class='form-label'>
+        <span>Email</span>
+        <input
+          type='email'
+          name='email'
+        />
+      </label>
+      <label class='form-label'>
+        <span>Teléfono</span>
+        <input
+          type='tel'
+          name='phoneNumber'
+        />
+      </label>
+      <label class='form-label'>
+        <span>Dirección</span>
+        <input
+          type='text'
+          name='address'
+        />
+      </label>
+      <label class='form-label'>
+        <span>Contraseña</span>
+        <input
+          type='password'
+          name='password'
+        />
+      </label>
+      <button class='create-account-btn'>Crear cuenta</button>
+    </form>
+  </article>
+</body>
+</html>

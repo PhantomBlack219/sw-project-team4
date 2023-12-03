@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="./Pets.css">
+</head>
+<body>
+  <div class='Home'>
+    <div class='pet-card-container'>
+      <!-- Itera en un arrray de objetos y pinta las cartas -->
+      <!-- {petCardsInformation.map((petCard) => ( -->
+        <div key={petCard.id} class='pet-card'>
+          <span class='pet-card--name'>{petCard.name}</span>
+          <span class='pet-card--image-container'><img src='./public/logo.png' alt='' /></span>
+        </div>
+        <div key={petCard.id} class='pet-card'>
+          <span class='pet-card--name'>{petCard.name}</span>
+          <span class='pet-card--image-container'><img src='./public/logo.png' alt='' /></span>
+        </div>
+        <div key={petCard.id} class='pet-card'>
+          <span class='pet-card--name'>{petCard.name}</span>
+          <span class='pet-card--image-container'><img src='./public/logo.png' alt='' /></span>
+        </div>
+        <div key={petCard.id} class='pet-card'>
+          <span class='pet-card--name'>{petCard.name}</span>
+          <span class='pet-card--image-container'><img src='./public/logo.png' alt='' /></span>
+        </div>
+        <div key={petCard.id} class='pet-card'>
+          <span class='pet-card--name'>{petCard.name}</span>
+          <span class='pet-card--image-container'><img src='./public/logo.png' alt='' /></span>
+        </div>
+      <!-- ))} -->
+    </div>
+  </div>
+</body>
+</html>

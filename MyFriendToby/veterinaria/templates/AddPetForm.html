@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="./AddPetForm.css">
+</head>
+<body>
+  <div class='add-pet'>
+    <div class='add-pet-container'>
+      <img src='./public/logo.png' alt='Logotipo de la pagina web'/>
+      <form class='add-pet-form'>
+        <label class='add-pet-label'>
+          <span>Nombre</span>
+          <input
+            type='text'
+            name='name'
+          />
+        </label>
+        <label class='add-pet-label'>
+          <span>Tamaño</span>
+          <input
+            list='Petsize'
+            name='size'
+          />
+          <datalist id='Petsize'>
+            <option value='Pequeño' />
+            <option value='Mediano' />
+            <option value='Grande' />
+          </datalist>
+        </label>
+        <label class='add-pet-label'>
+          <span>Dinero requerido</span>
+          <input
+            type='text'
+            name='moneyRequired'
+          />
+        </label>
+        <label class='add-pet-label'>
+          <span>Espacio requerido</span>
+          <input
+            type='text'
+            name='spaceRequired'
+          />
+        </label>
+        <label class='add-pet-label'>
+          <span>Enfermedades</span>
+          <input
+            type='text'
+            name='diseases'
+          />
+        </label>
+        <label class='add-pet-label'>
+          <span>Chequeo en </span>
+          <input
+            type='date'
+            name='check'
+          />
+        </label>
+        <label class='add-pet-label'>
+          <span>Agregar imagen </span>
+          <input
+            type='file'
+            name='file'
+          />
+        </label>
+        <button>Crear mascota</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

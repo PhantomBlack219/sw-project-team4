@@ -1,0 +1,63 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html{
+  font-size: 62.5%;
+}
+
+.create-account--logo-container {
+  cursor: pointer;
+}
+
+.create-account--logo-container > img{
+  width: 250px;
+}
+
+.create-account--form-container {
+  display: flex;
+  font-size: 1.6rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.create-account-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-label > span{
+  text-align: center;
+  flex: 1;
+  width: 80px;
+  box-sizing: border-box;
+  color: #03045e;
+}
+
+.form-label > input  {
+  flex: 1;
+  padding: 5px;
+}
+
+.create-account-btn {
+  font-size: 1.6rem;
+  font-weight: 600;
+  width: 200px;
+  padding: 8px;
+  color: #ffff;
+  background-color: #03045e;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  cursor: pointer;
+}

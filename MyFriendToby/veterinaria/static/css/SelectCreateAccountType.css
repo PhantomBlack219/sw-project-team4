@@ -1,0 +1,57 @@
+.create-account--logo-container {
+  cursor: pointer;
+}
+
+.create-account--logo-container > img{
+  width: 250px;
+}
+
+.select-create-account {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  gap: 20px;
+}
+
+.account-type-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.account-types{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
+  gap: 10px;
+}
+
+.account-type-card { 
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  gap: 10px;
+  color: #03045e;
+  cursor: pointer;
+}
+
+.account-type-card:hover {
+  background-color: #99defd;
+  border-radius: 5px;
+}
+
+.account-type-card--icon-container > svg {
+  stroke: #03045e;
+}
+
+.create-account--login {
+  text-align: center;
+}
+
+.create-account--login > span {
+  color: #03045e;
+  cursor: pointer;
+}
