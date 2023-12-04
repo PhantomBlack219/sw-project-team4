@@ -52,3 +52,13 @@ def servicesView(request):
     template = loader.get_template('services.html')
     context = {}
     return HttpResponse(template.render(context,request))
+
+def loginView(request):
+    template = loader.get_template('Login.html')
+    context = {}
+    return HttpResponse(template.render(context,request))
+
+def selectCreateTypeAccountView(request):
+    template = loader.get_template('SelectCreateAccountType.html')
+    context = {}
+    return HttpResponse(template.render(context,request))
