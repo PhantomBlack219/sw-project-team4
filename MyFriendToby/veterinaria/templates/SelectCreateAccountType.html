@@ -1,15 +1,17 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" type="text/css" href="./SelectCreateAccountType.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/SelectCreateAccountType.css' %}">
 </head>
 <body>
   <article class='select-create-account'>
     <div class='create-account--logo-container'>
-      <img src='./public/logo.png' alt='Logotipo de la pagina web' />
+      <img src="{% static 'img/logo/logo.png' %}" alt='Logotipo de la pagina web' />
     </div>
     <div class='account-type-container'>
       <h3>¿Qué tipo de cuenta quieres crear?</h3>
