@@ -14,6 +14,7 @@ urlpatterns = [
     path('elements/', views.elementsView, name='elements'),
     path('services/', views.servicesView, name='services'),
     path('accounts/login/', views.loginView, name='login'),
-    path('accounts/login/selectcreateaccounttype', views.selectCreateTypeAccountView, name='selectcreateaccounttype')
-    
+    path('accounts/login/selectcreateaccounttype', views.selectCreateTypeAccountView, name='selectcreateaccounttype'),
+    path('accounts/login/selectcreateaccounttype/createvetform/', views.createVetForm, name='createvetform'),
+    path('accounts/login/selectcreateaccounttype/createuserform/', views.createUserForm, name='createuserform')       
 ]

@@ -10,6 +10,8 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from django.conf import settings
 from .models import *
+from django.urls import reverse
+
 
 
 def indexView(request):
@@ -60,5 +62,20 @@ def loginView(request):
 
 def selectCreateTypeAccountView(request):
     template = loader.get_template('SelectCreateAccountType.html')
+    context = {}
+    return HttpResponse(template.render(context,request))
+
+def devolverALogin(request):
+    # ... lógica de tu vista ...
+    # En el lugar donde decides que quieres redirigir, puedes usar el siguiente código:
+    return redirect(reverse('login'))
+
+def createVetForm(request):
+    template = loader.get_template('CreateVetForm.html')
+    context = {}
+    return HttpResponse(template.render(context,request))
+
+def createUserForm(request):
+    template = loader.get_template('CreateUserForm.html')
     context = {}
     return HttpResponse(template.render(context,request))
