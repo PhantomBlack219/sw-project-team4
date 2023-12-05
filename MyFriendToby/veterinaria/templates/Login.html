@@ -14,7 +14,8 @@
       <img src="{% static 'img/logo/logo.png' %}" alt='Logotipo de la pagina web'/>
     </div>
     <h1>Hola! Ingresa tu e-mail y Contraseña</h1>
-    <form class='login-form'>
+    <form class='login-form' method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
       <label>
         <span>E-mail</span>
         <input type='email'name='email' class='login-form-box'/>
@@ -25,7 +26,7 @@
       </label>
       <button class='login-form-box'>Iniciar sesión</button>
     </form>
-    <span>Crear cuenta</span>
+    <span> <a href="{% url 'createuserform' %}">Crear cuenta</a></span>
   </section>
 </body>
 </html>

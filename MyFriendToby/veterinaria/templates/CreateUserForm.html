@@ -14,7 +14,18 @@
       <img src="{% static 'img/logo/logo.png' %}" alt='Logotipo de la pagina web' />
     </div>
 
-    <form class='create-account-form create-account--user-form' onSubmit={handleCreateUser}>
+    <form class='create-account-form create-account--user-form' onSubmit={handleCreateUser} method="POST" enctype="multipart/form-data">
+        <!-- Security token -->
+        {% csrf_token %}
+        <label class='form-label'>
+          <span>Tipo de usuario</span>
+          <select name='user_type'>
+              <option value='adoptante'>Adoptante</option>
+              <option value='donante'>Donante</option>
+              <option value='veterinario'>Veterinario</option>
+          </select>
+      </label>
+
       <label class='form-label'>
         <span>Nombre</span>
         <input

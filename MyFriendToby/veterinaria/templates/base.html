@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="{% static 'css/slick.css' %}">
     <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block headers %}
+
+    {% endblock %}
 </head>
 
 <body>
@@ -54,24 +58,33 @@
                                 <!-- Main-menu -->
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav> 
+                                        {% if user.is_authenticated %}
                                         <ul id="navigation">
                                             <li><a href="{% url 'index'%}">Inicio</a></li>
                                             <li><a href="{% url 'about'%}">Sobre nosotros</a></li>
-                                            <!-- <li><a href="{% url 'services'%}">Services</a></li> -->
-                                            <!-- <li><a href="{% url 'blog'%}">Blog</a>
-                                                <ul class="submenu">
-                                                    <li><a href="{% url 'blog'%}">Blog</a></li>
-                                                    <li><a href="{% url 'blog_details'%}">Blog Details</a></li>
-                                                    <li><a href="{% url 'elements'%}">Element</a></li>
-                                                </ul>
-                                            </li> -->
+                                            <li><a href="{% url 'mascotas'%}">Mascotas</a></li>
+                                            <li><a href="{% url 'contact'%}">Contactanos</a></li>
+                                            </ul>
+                                            {% else %}
+                                            <ul id="navigation">
+                                            <li><a href="{% url 'index'%}">Inicio</a></li>
+                                            <li><a href="{% url 'about'%}">Sobre nosotros</a></li>
+                                            
                                             <li><a href="{% url 'contact'%}">Contactanos</a></li>
                                         </ul>
+                                            {% endif %}
+                                        
                                     </nav>
                                 </div>
+                                {% if user.is_authenticated %}
                                 <div class="header-right-btn f-right d-none d-lg-block ml-30">
-                                    <a href="#" class="header-btn">Iniciar sesion</a>
+                                    <a class="header-btn" aria-current="page" href="{% url 'logout'%}?next={{request.path}}">Cerrar sesion</a></li>
                                 </div>
+                                {% else %}
+                                <div class="header-right-btn f-right d-none d-lg-block ml-30"></div>
+                                <a class="header-btn" aria-current="page" href="{% url 'login'%}">Iniciar sesion</a></li>
+                                </div>
+                                {% endif %}
                             </div>
                         </div>   
                         <!-- Mobile Menu -->
@@ -99,7 +112,7 @@
                      <div class="single-footer-caption mb-30">
                           <!-- logo -->
                          <div class="footer-logo mb-25">
-                             <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                             <a href="{% url 'index'%}"><img src="{% static 'img/logo/logo.png' %}" alt=""></a>
                          </div>
                          <div class="footer-tittle">
                              <div class="footer-pera">
@@ -121,11 +134,11 @@
                         <div class="footer-tittle">
                             <h4>Compañia</h4>
                             <ul>
-                                <li><a href="index.html">Inicio</a></li>
-                                <li><a href="about.html">sobre nosotros</a></li>
+                                <li><a href="{% url 'index'%}">Inicio</a></li>
+                                <li><a href="{% url 'about'%}">sobre nosotros</a></li>
                                 <!-- <li><a href="single-blog.html">Services</a></li> -->
                                 <!-- <li><a href="#">Cases</a></li> -->
-                                <li><a href="contact.html">  Contactanos</a></li>
+                                <li><a href="{% url 'contact'%}">  Contactanos</a></li>
                             </ul>
                         </div>
                     </div>
