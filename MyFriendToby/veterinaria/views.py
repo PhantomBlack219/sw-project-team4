@@ -123,7 +123,7 @@ def createUserForm(request):
     else:
         return render(request, 'CreateUserForm.html')
 
-def mascotasView(request):
+def TusMascotasView(request):
     template = loader.get_template('mascotas.html')
     context = {}
     return HttpResponse(template.render(context,request))

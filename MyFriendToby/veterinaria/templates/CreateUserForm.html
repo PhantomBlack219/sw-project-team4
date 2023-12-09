@@ -14,32 +14,29 @@
       <img src="{% static 'img/logo/logo.png' %}" alt='Logotipo de la pagina web' />
     </div>
 
-    <form class='create-account-form create-account--user-form' onSubmit={handleCreateUser} method="POST" enctype="multipart/form-data">
+    
+
+    <form class='create-account-form create-account--user-form' onSubmit={handleCreateUser} method="POST" enctype="multipart/form-data" id="formulario">
         <!-- Security token -->
         {% csrf_token %}
         <label class='form-label'>
           <span>Tipo de usuario</span>
-          <select name='user_type'>
-              <option value='adoptante'>Adoptante</option>
-              <option value='donante'>Donante</option>
-              <option value='veterinario'>Veterinario</option>
+          <select name='user_type' onchange="cambiarNombres(this.value)">
+            <option value='adoptante'>Adoptante</option>
+            <option value='donante'>Donante</option>
+            <option value='veterinario'>Veterinario</option>
           </select>
       </label>
 
-      <label class='form-label'>
+      <label class='form-label' id='nombreLabel'>
         <span>Nombre</span>
-        <input
-          type='text'
-          name='name'
-        />
+        <input type='text' name='name' />
       </label>
-      <label class='form-label'>
+      <label class='form-label' id='apellidosLabel'>
         <span>Apellidos</span>
-        <input
-          type='text'
-          name='lastname'
-        />
+        <input type='text' name='lastname' />
       </label>
+      
       <label class='form-label'>
         <span>Teléfono</span>
         <input
@@ -77,6 +74,35 @@
       </label>
       <button class='create-account-btn'>Crear cuenta</button>
     </form>
+    </div>
+
   </article>
+  <script>
+    function cambiarNombres(tipoUsuario) {
+      var nombreLabel = document.getElementById('nombreLabel');
+      var apellidosLabel = document.getElementById('apellidosLabel');
+    
+      if (tipoUsuario === 'veterinario') {
+        nombreLabel.innerHTML = `
+          <span>Nombre comercial</span>
+          <input type='text' name='name' />
+        `;
+        apellidosLabel.innerHTML = `
+          <span>NIT</span>
+          <input type='text' name='lastname' />
+        `;
+      } else {
+        nombreLabel.innerHTML = `
+          <span>Nombre</span>
+          <input type='text' name='name' />
+        `;
+        apellidosLabel.innerHTML = `
+          <span>Apellidos</span>
+          <input type='text' name='lastname' />
+        `;
+      }
+    }
+    </script>
+
 </body>
 </html>
