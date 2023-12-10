@@ -13,6 +13,7 @@ from .models import *
 from django.urls import reverse
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 def indexView(request):
     template = loader.get_template('index.html')
@@ -45,11 +46,6 @@ def contactView(request):
     context = {}
     return HttpResponse(template.render(context,request))
 
-def elementsView(request):
-    template = loader.get_template('elements.html')
-    context = {}
-    return HttpResponse(template.render(context,request))
-
 def servicesView(request):
     template = loader.get_template('services.html')
     context = {}
@@ -59,10 +55,6 @@ def loginView(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-
-        # Django's built-in User model doesn't have an email field as the unique identifier, it uses username.
-        # So, if you are using Django's built-in User model, you need to get the username from the email.
-        # If you are using a custom User model with email as the unique identifier, you can skip this step.
         try:
             username = User.objects.get(email=email).username
         except User.DoesNotExist:
@@ -84,10 +76,7 @@ def selectCreateTypeAccountView(request):
     context = {}
     return HttpResponse(template.render(context,request))
 
-def devolverALogin(request):
-    # ... lógica de tu vista ...
-    # En el lugar donde decides que quieres redirigir, puedes usar el siguiente código:
-    return redirect(reverse('login'))
+
 
 def createVetForm(request):
     template = loader.get_template('CreateVetForm.html')
@@ -123,7 +112,25 @@ def createUserForm(request):
     else:
         return render(request, 'CreateUserForm.html')
 
+@login_required
 def TusMascotasView(request):
-    template = loader.get_template('mascotas.html')
-    context = {}
-    return HttpResponse(template.render(context,request))
+    # # Asegúrate de que el usuario esté autenticado
+    if request.user.is_authenticated:
+        # Filtra las mascotas por el id_adoptante si el usuario pertenece al grupo "adoptante"
+        if request.user.groups.filter(name='adoptante').exists():
+            mascotas = Mascota.objects.filter(id_adoptante=request.user)
+        # Filtra las mascotas por el id_veterinario si el usuario pertenece al grupo "veterinario"
+        elif request.user.groups.filter(name='veterinario').exists():
+            mascotas = Mascota.objects.filter(id_veterinario=request.user)
+        else:
+            mascotas = Mascota.objects.filter(id_donante=request.user)
+        return render(request, 'TusMascotas.html', {'mascotas': mascotas})
+    else:
+        return redirect('login')
+
+def mascotasView(request):
+    
+    # Filtra las mascotas por el campo adoptado
+    mascotas = Mascota.objects.filter(adoptado=False)
+    return render(request, 'Mascotas.html', {'mascotas': mascotas})
+    

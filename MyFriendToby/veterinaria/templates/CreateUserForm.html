@@ -27,7 +27,18 @@
             <option value='veterinario'>Veterinario</option>
           </select>
       </label>
-
+      
+      <article class='create-account--form-container' id='veracityArticle' style='display:none'>
+        <div class='veracity-information'>
+          <h3 class='veracity-title'>Declaración de veracidad de la información</h3>
+          <p class='veracity-text'>Al utilizar este sitio web y proporcionar información como profesional de la veterinaria, usted declara y garantiza que toda la información proporcionada es veraz y precisa. Usted se compromete a mantener sus credenciales y detalles de contacto actualizados, y acepta que la información que proporciona será utilizada para ofrecer servicios y asistencia relacionados con la práctica veterinaria. Reconoce la importancia de la exactitud y la integridad de la información en la atención de los pacientes y clientes, y se compromete a cumplir con los más altos estándares profesionales en su campo.</p>    
+        <div class='veracity--options-container'>
+          <button type='button' id='rechazar'>Rechazar</button>
+          <button type='button' id='aceptar'>Aceptar</button>
+        </div>
+        </div>
+      </article>
+      
       <label class='form-label' id='nombreLabel'>
         <span>Nombre</span>
         <input type='text' name='name' />
@@ -36,7 +47,7 @@
         <span>Apellidos</span>
         <input type='text' name='lastname' />
       </label>
-      
+
       <label class='form-label'>
         <span>Teléfono</span>
         <input
@@ -72,7 +83,7 @@
           name='password'
         />
       </label>
-      <button class='create-account-btn'>Crear cuenta</button>
+      <button class='create-account-btn' id='crearCuenta' type='button'>Crear cuenta</button>
     </form>
     </div>
 
@@ -91,6 +102,21 @@
           <span>NIT</span>
           <input type='text' name='lastname' />
         `;
+        document.getElementById('crearCuenta').onclick = function(e) {
+          e.preventDefault();
+          document.getElementById('veracityArticle').style.display = 'block';
+        };
+        document.getElementById('aceptar').onclick = function() {
+          document.getElementById('veracityArticle').style.display = 'none';
+          document.getElementById('formulario').submit();
+        };
+        document.getElementById('rechazar').onclick = function() {
+          document.getElementById('veracityArticle').style.display = 'none';
+          document.getElementById('crearCuenta').onclick = function(e) {
+            e.preventDefault();
+            document.getElementById('veracityArticle').style.display = 'block';
+          };
+        };
       } else {
         nombreLabel.innerHTML = `
           <span>Nombre</span>
@@ -100,9 +126,15 @@
           <span>Apellidos</span>
           <input type='text' name='lastname' />
         `;
+        document.getElementById('crearCuenta').onclick = function() {
+          document.getElementById('formulario').submit();
+        };
       }
     }
-    </script>
+</script>
+
+
+
 
 </body>
 </html>
