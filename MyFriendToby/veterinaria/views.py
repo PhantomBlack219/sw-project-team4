@@ -112,7 +112,7 @@ def createUserForm(request):
             return redirect('index')
         except:
             # Aquí puedes manejar el error como desees, por ejemplo, puedes registrar el error en tus logs
-            return redirect('CreateUserForm.html')
+            return redirect('createuserform')
     else:
         return render(request, 'CreateUserForm.html')
 
