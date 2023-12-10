@@ -5,6 +5,8 @@
 }
 html{
   font-size: 62.5%;
+  background-image: url('../img/login/fondo-formularios.jpg');
+  background-repeat: repeat; /* Puedes ajustar según tus necesidades */
 }
 .login {
   display: flex;
@@ -17,12 +19,24 @@ html{
   height: 100vh;
 }
 
+.login-container {
+  max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
+  width: 100%;
+  background-color: white; /* Agrega un fondo blanco */
+  padding: 20px; /* Agrega un relleno al contenedor */
+  border-radius: 10px; /* Opcional: Añade bordes redondeados al contenedor */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Opcional: Añade una sombra al contenedor */
+  text-align: center;
+}
+
+
 .login-logo-container {
   cursor: pointer;
 }
 
 .login-logo-container > img{
   width: 250px;
+  margin-bottom: 1.0rem;
 }
 
 .login > h1 {
@@ -41,6 +55,7 @@ html{
   font-size: 1.4rem;
   margin: 0 0 6px 6px;
   color: #03045e;
+  text-decoration: none;
 }
 
 .login-form-box {
@@ -51,7 +66,13 @@ html{
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.9);
   overflow: hidden;
+  transition: color 0.2s; /* Agregamos una transición para suavizar el cambio de color */
 }
+
+.login-form-box:hover {
+  color: #B8860B; /* Color marrón al hacer hover */
+}
+
 
 .login-form > button {
   font-weight: 600;
@@ -65,3 +86,4 @@ html{
   color: #03045e;
   cursor: pointer;
 }
+
