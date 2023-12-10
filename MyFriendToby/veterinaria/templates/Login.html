@@ -10,25 +10,46 @@
 </head>
 <body>
   <section class='login'>
-    <div class='login-logo-container'>
-      <img src="{% static 'img/logo/logo.png' %}" alt='Logotipo de la pagina web'/>
+    <div class = 'login-container'>
+      <div class='login-logo-container'>
+        <img src="{% static 'img/logo/logo.png' %}" alt='Logotipo de la pagina web'/>
+      </div>
+      <h1 style="margin-bottom: 1.5rem;">Hola! Ingresa tu e-mail y Contraseña</h1>
+
+      <form id="loginForm" class='login-form' method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>
+          <span>E-mail</span>
+          <input type='email' name='email' class='login-form-box'/>
+        </label>
+        <label>
+          <span>Contraseña</span>
+          <input type='password' name='password' class='login-form-box'/>
+        </label>
+        <button class='login-form-box' style="margin-bottom: 1.5rem;" onclick="validateForm()">Iniciar sesión</button>
+      </form>      
+      
+      <span><a href="{% url 'createuserform' %}" style="text-decoration: none; color: inherit; transition: color 0.2s;" onmouseover="this.style.color='#A0522D'" onmouseout="this.style.color='inherit'">Crear cuenta</a></span>
     </div>
-    <h1>Hola! Ingresa tu e-mail y Contraseña</h1>
-    <form class='login-form' method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      <label>
-        <span>E-mail</span>
-        <input type='email'name='email' class='login-form-box'/>
-      </label>
-      <label>
-        <span>Contraseña</span>
-        <input type='password' name='password' class='login-form-box'/>
-      </label>
-      <button class='login-form-box'>Iniciar sesión</button>
-    </form>
-    <span> <a href="{% url 'createuserform' %}">Crear cuenta</a></span>
   </section>
 </body>
-
-
 </html>
+
+
+<script>
+function validateForm() {
+    var email = document.forms["loginForm"]["email"].value;
+    var password = document.forms["loginForm"]["password"].value;
+
+    if (email === "" || password === "") {
+        alert("Por favor, completa todos los campos.");
+        window.location.href = 'http://127.0.0.1:8000/accounts/login/'; // Redirige manualmente
+        return false; // Detiene el envío del formulario
+    }
+
+    // Si llega aquí, todos los campos están completos
+    return true; // Permite el envío del formulario
+}
+
+</script>
+
