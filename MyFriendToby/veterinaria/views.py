@@ -116,6 +116,11 @@ def createUserForm(request):
     else:
         return render(request, 'CreateUserForm.html')
 
+def mascotasView(request):
+     # Filtra las mascotas por el campo adoptado
+    mascotas = Mascota.objects.filter(adoptado=False)
+    return render(request, 'Mascotas.html', {'mascotas': mascotas})
+
 @login_required
 def TusMascotasView(request):
     # # Asegúrate de que el usuario esté autenticado
@@ -131,12 +136,6 @@ def TusMascotasView(request):
         return render(request, 'TusMascotas.html', {'mascotas': mascotas})
     else:
         return redirect('login')
-
-def mascotasView(request):
-    
-    # Filtra las mascotas por el campo adoptado
-    mascotas = Mascota.objects.filter(adoptado=False)
-    return render(request, 'Mascotas.html', {'mascotas': mascotas})
 
 
 def add_petForm(request):
@@ -164,3 +163,89 @@ def add_petForm(request):
         form = AddPetForm()
 
     return render(request, 'AddPetForm.html', {'form': form})
+
+
+def edit_petForm(request, id):
+    if request.method == 'POST':
+        mascota = Mascota.objects.get(pk=id)
+        mascota.adoptado = request.POST.get('adoptado')
+        mascota.nombre = request.POST.get('nombre')
+        mascota.edad = request.POST.get('edad')
+        mascota.peso = request.POST.get('peso')
+        mascota.tamaño = request.POST.get('tamaño')
+        mascota.save()
+        return redirect('Tus_mascotas')
+    else:
+        mascota = Mascota.objects.get(pk=id)
+        return render(request, 'EditPetCard.html', {'mascota': mascota})
+
+def edit_petVetForm(request, id):
+    if request.method == 'POST':
+        mascota = Mascota.objects.get(pk=id)
+        mascota.adoptado = request.POST.get('adoptado', 'False') == 'True'
+        mascota.nombre = request.POST.get('nombre')
+        mascota.edad = request.POST.get('edad')
+        mascota.peso = request.POST.get('peso')
+        mascota.tamaño = request.POST.get('tamaño')
+        mascota.enfermedades = request.POST.get('enfermedades')
+        mascota.dineromantenimiento = request.POST.get('dineromantenimiento')
+        mascota.espaciomantenimiento = request.POST.get('espaciomantenimiento')
+        mascota.chequeo = request.POST.get('chequeo')
+        mascota.prox_chequeo = request.POST.get('prox_chequeo')
+        mascota.save()
+        return redirect('Tus_mascotas')
+    else:
+        mascota = Mascota.objects.get(pk=id)
+        return render(request, 'EditPetCardVet.html', {'mascota': mascota})
+
+def eliminar_mascota(request, id):
+    if request.method == 'POST':
+        mascota = Mascota.objects.get(pk=id)
+        mascota.delete()
+        return redirect('Tus_mascotas')
+
+
+#def adopt_petForm(request, id):
+    #if request.method == 'POST':
+        #form = FormularioAdopcionForm(request.POST)
+        #if form.is_valid():
+            #formulario = form.save(commit=False)
+            #formulario.usuario = request.user
+            #formulario.mascota = Mascota.objects.get(pk=id)
+            #formulario.save()
+
+            #mascota = Mascota.objects.get(pk=id)
+            #mascota.id_adoptante = request.user
+            #mascota.save()
+
+            #return redirect('Tus_mascotas')
+    #else:
+        #form = FormularioAdopcionForm()
+        #mascota = Mascota.objects.get(pk=id)
+
+   #return render(request, 'AdoptPetCard.html', {'form': form})
+
+
+from .models import Mascota, FormularioAdopcion
+
+def adopt_petForm(request, id):
+    if request.method == 'POST':
+        form = FormularioAdopcionForm(request.POST)
+        mascota = Mascota.objects.get(pk=id)
+        if form.is_valid():
+            new_pet = form.save(commit=False)
+            new_pet.usuario = request.user
+            new_pet.mascota = mascota  # Asigna la instancia de la mascota, no el ID
+            new_pet.save()
+            
+            mascota.adoptado = True
+            mascota.id_adoptante = request.user
+            mascota.save()
+            
+            return redirect('Tus_mascotas')  # Redirige a la lista de mascotas después de un envío exitoso
+    else:
+        form = FormularioAdopcionForm()
+
+    return render(request, 'AdoptPetCard.html', {'form': form})
+
+

@@ -1,33 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" type="text/css" href="./EditPetCardVet.css">
-</head>
-<body>
+
+{% extends "base.html" %}
+{% load static %}
+{% block headers %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/AddPetForm.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="slider-area2 slider-height2 d-flex align-items-center">
+  <div class="container">
+     <div class="row">
+        <div class="col-xl-12">
+              <div class="hero-cap text-center pt-50">
+                 <h2>Editar mascota</h2>
+              </div>
+        </div>
+     </div>
+  </div>
+</div>
+
+<div class="container">
   <div class='add-pet'>
     <div class='add-pet-container'>
-      <img src='./public/logo.png' alt='Logotipo de la pagina web'/>
-      <form class='add-pet-form'>
+      <img src="{% static 'img/logo/logo.png' %}" alt='Logotipo de la pagina web'/>
+      <form class='add-pet-form' method="POST" action="{% url 'editar_mascotas_vet' mascota.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class='add-pet-label'>
+            <label>
+                <span>Adoptado</span>
+            </label>
+            <input type="checkbox" id="adoptado" name="adoptado" value="True" {% if mascota.adoptado %} checked {% endif %}>
+        </div>
         <label class='add-pet-label'>
-          <span>Enfermedades</span>
-          <input
-            type='text'
-            name='diseases'
-          />
+            <span>Nombre *</span>
+            <input type='text' name='nombre' value="{{ mascota.nombre }}" id="id_nombre" />
         </label>
         <label class='add-pet-label'>
-          <span>Chequeo en </span>
-          <input
-            type='date'
-            name='check'
-          />
+            <span>Edad *</span>
+            <input type='number' name='edad' value="{{ mascota.edad }}" id="id_edad" />
         </label>
-        <button>Actualizar datos</button>
-      </form>
+        <label class='add-pet-label'>
+            <span>Peso *</span>
+            <input type='number' name='peso' value="{{ mascota.peso }}" id="id_peso" />
+        </label>
+        <div class='add-pet-label'>
+            <label>
+                <span>Tamaño *</span>
+            </label>
+            <select name='tamaño' id="id_tamaño">
+                <option value="Grande" {% if mascota.tamaño == "Grande" %} selected {% endif %}>Grande</option>
+                <option value="Mediano" {% if mascota.tamaño == "Mediano" %} selected {% endif %}>Mediano</option>
+                <option value="Pequeño" {% if mascota.tamaño == "Pequeño" %} selected {% endif %}>Pequeño</option>
+            </select>
+        </div>
+        <label class='add-pet-label'>
+            <span>Enfermedades</span>
+            <input type='text' name='enfermedades' value="{{ mascota.enfermedades }}" id="id_enfermedades" />
+        </label>
+        <label class='add-pet-label'>
+            <span>Dinero Mantenimiento</span>
+            <input type='number' name='dineromantenimiento' value="{{ mascota.dineromantenimiento }}" id="id_dineromantenimiento" />
+        </label>
+        <label class='add-pet-label'>
+            <span>Espacio Mantenimiento</span>
+            <input type='text' name='espaciomantenimiento' value="{{ mascota.espaciomantenimiento }}" id="id_espaciomantenimiento" />
+        </label>
+        <label class='add-pet-label'>
+            <span>Chequeo</span>
+            <input type='date' name='chequeo' value="{{ mascota.chequeo }}" id="id_chequeo" />
+        </label>
+        <label class='add-pet-label'>
+            <span>Próximo Chequeo</span>
+            <input type='date' name='prox_chequeo' value="{{ mascota.prox_chequeo }}" id="id_prox_chequeo" />
+        </label>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    </form>    
     </div>
   </div>
-</body>
-</html>
+</div>
+
+{% endblock %}

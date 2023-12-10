@@ -31,8 +31,10 @@
             <p>Ultimo chequeo: {{ x.get_chequeo}}</p>
             <p>Próximo chequeo médico: {{ x.get_prox_chequeo}}</p>
             {% if user.groups.all.0.name == 'adoptante' %}
+            {% elif user.groups.all.0.name == 'donante' %}
+            <a href="{% url 'editar_mascotas' x.id %}" class="adoptar-button">Editar</a>
             {% else %}
-            <button class="adoptar-button">Editar</button>
+            <a href="{% url 'editar_mascotas_vet' x.id %}" class="adoptar-button">Editar</a>
             {% endif %}
           </div>
       </div> 

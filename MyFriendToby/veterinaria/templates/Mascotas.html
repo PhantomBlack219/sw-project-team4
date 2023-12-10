@@ -7,7 +7,7 @@
 {% block content %}
 <main>
 
-   {% for x in mascotas %} 
+   
    <div class="slider-area2 slider-height2 d-flex align-items-center">
       <div class="container">
          <div class="row">
@@ -19,7 +19,7 @@
          </div>
       </div>
    </div>
-  
+   {% for x in mascotas %} 
    <div class="card-container">
       <div class="card">
         <img src="{{ x.get_foto}}" alt="Pelusa">
@@ -29,8 +29,13 @@
         <p>Espacio necesario: {{ x.get_espaciomantenimiento}}</p>
         <p>Enfermedades: {{ x.get_enfermedades}}</p>
         {% if user.is_authenticated%}
-        <button class="adoptar-button" href="#">Adoptar</button>
-        {% elif not user.is_authenticated %}
+            {% if user.groups.all.0.name == 'veterinario' %}
+            {% elif user.groups.all.0.name == 'donante' %}
+            {% else %}
+            <a class="adoptar-button" href="{% url 'adoptar_mascotas' x.id %}">Adoptar</a>
+
+            {% endif %}
+            {% elif not user.is_authenticated %}
         <a class="adoptar-button" href="{% url 'login'%}?next={% url 'mascotas'%}">Adoptar</a>
         {% endif %}
       </div>

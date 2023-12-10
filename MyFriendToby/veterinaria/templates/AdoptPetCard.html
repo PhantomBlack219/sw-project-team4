@@ -1,0 +1,104 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block headers %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/AddPetForm.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="slider-area2 slider-height2 d-flex align-items-center">
+  <div class="container">
+     <div class="row">
+        <div class="col-xl-12">
+              <div class="hero-cap text-center pt-50">
+                 <h2>Editar mascota</h2>
+              </div>
+        </div>
+     </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class='add-pet'>
+    <div class='add-pet-container'>
+      <img src="{% static 'img/logo/logo.png' %}" alt='Logotipo de la pagina web'/>
+      <form class='add-pet-form' method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label class='add-pet-label'>
+            <span>Ingresos Mensuales *</span>
+            <input type='number' name='ingresos_mensuales' id="id_ingresos_mensuales" />
+        </label>
+        <label class='add-pet-label'>
+            <span>Número de Miembros en la Familia *</span>
+            <input type='number' name='numero_de_miembros_familia' id="id_numero_de_miembros_familia" />
+        </label>
+        <div class='add-pet-label'>
+            <label>
+                <span>Tiene Otros Animales</span>
+            </label>
+            <input type="checkbox" id="tiene_otros_animales" name="tiene_otros_animales" value="True">
+        </div>
+        <div class='add-pet-label'>
+            <label>
+                <span>Pregunta 1 *</span>
+            </label>
+            <select name='pregunta1' id="id_pregunta1">
+                <option value="1 a 2 veces al dia">1 a 2 veces al dia</option>
+                <option value="2 o 3 veces al dia">2 o 3 veces al dia</option>
+                <option value="Mas de tres veces">Mas de tres veces</option>
+                <option value="No aplica">No aplica</option>
+            </select>
+        </div>
+        <div class='add-pet-label'>
+            <label>
+                <span>Pregunta 2 *</span>
+            </label>
+            <select name='pregunta2' id="id_pregunta2">
+                <option value="1 vez a la semana">1 vez a la semana</option>
+                <option value="1 a 3 veces a la semana">1 a 3 veces a la semana</option>
+                <option value="Mas de 3 veces a la semana">Mas de 3 veces a la semana</option>
+            </select>
+        </div>
+        <div class='add-pet-label'>
+            <label>
+                <span>Pregunta 3 *</span>
+            </label>
+            <select name='pregunta3' id="id_pregunta3">
+                <option value="Comida seca especial para mascotas">Comida seca especial para mascotas</option>
+                <option value="Comida seca y comida casera">Comida seca y comida casera</option>
+                <option value="comida casera">comida casera</option>
+                <option value="No aplica">No aplica</option>
+            </select>
+        </div>
+        <div class='add-pet-label'>
+            <label>
+                <span>Pregunta 4 *</span>
+            </label>
+            <select name='pregunta4' id="id_pregunta4">
+                <option value="De 1 a 3 veces al mes">De 1 a 3 veces al mes</option>
+                <option value="De 1 a 3 veces cada 2 meses">De 1 a 3 veces cada 2 meses</option>
+                <option value="Cada vez que tenga olor fuerte">Cada vez que tenga olor fuerte</option>
+            </select>
+        </div>
+        <div class='add-pet-label'>
+            <label>
+                <span>Pregunta 5 *</span>
+            </label>
+            <select name='pregunta5' id="id_pregunta5">
+                <option value="De 1 a 3 veces cada 2 meses">De 1 a 3 veces cada 2 meses</option>
+                <option value="1 vez por mes">1 vez por mes</option>
+                <option value="1 vez por semana">1 vez por semana</option>
+            </select>
+        </div>
+        <label class='add-pet-label'>
+            <span>Descripción de la Casa *</span>
+            <textarea name='descripcion_casa' id="id_descripcion_casa"></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </form>
+       
+    </div>
+  </div>
+</div>
+
+{% endblock %}
