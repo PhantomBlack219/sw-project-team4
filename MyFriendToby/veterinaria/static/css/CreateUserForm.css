@@ -5,9 +5,18 @@
 }
 html{
   font-size: 62.5%;
+  background-image: url('../img/login/fondo-formularios.jpg');
+  background-repeat: repeat;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  min-height: 100vh;
 }
+
+
 .create-account--logo-container {
   cursor: pointer;
+  margin-bottom: 5px;
 }
 
 .create-account--logo-container > img{
@@ -20,7 +29,14 @@ html{
   font-size: 1.6rem;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  margin: auto;
+  max-width: 600px;
+  max-height: 80vh; /* Establecer la altura máxima en el 80% de la altura de la ventana */
+  overflow-y: auto; /* Agregar desplazamiento vertical si el contenido excede la altura */
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 .create-account-form {
@@ -59,6 +75,11 @@ html{
   border-radius: 5px;
   border: 1px solid #000000;
   cursor: pointer;
+  transition: color 0.2s;
+}
+
+.create-account-btn:hover {
+  color: #B8860B;  /* Cambio de color al pasar el mouse por encima */
 }
 
 .veracity-information {
@@ -102,4 +123,6 @@ html{
   .veracity-information > p {
     font-size: 1.6rem;
   }
+ 
+  
 }
