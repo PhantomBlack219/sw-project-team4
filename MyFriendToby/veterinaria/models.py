@@ -23,7 +23,7 @@ class Mascota(models.Model):
     chequeo = models.DateField(null=False)
     prox_chequeo = models.DateField(null=True)
 
-    def get_adoptadp(self):
+    def get_adoptado(self):
         return self.adoptado
 
     def get_nombre(self):
