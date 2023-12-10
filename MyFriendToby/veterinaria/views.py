@@ -71,7 +71,7 @@ def loginView(request):
             return redirect('index')
         else:
             # Aquí puedes manejar el error como desees, por ejemplo, puedes registrar el error en tus logs
-            return redirect('Login.html')
+            return redirect('login')
     else:
         return render(request, 'Login.html')
 
