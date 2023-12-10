@@ -14,6 +14,10 @@ from django.urls import reverse
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from random import choice
+from .models import *
+from .forms import *
 
 def indexView(request):
     template = loader.get_template('index.html')
@@ -133,4 +137,30 @@ def mascotasView(request):
     # Filtra las mascotas por el campo adoptado
     mascotas = Mascota.objects.filter(adoptado=False)
     return render(request, 'Mascotas.html', {'mascotas': mascotas})
-    
+
+
+def add_petForm(request):
+    if request.method == 'POST':
+        form = AddPetForm(request.POST)
+        if form.is_valid():
+            new_pet = form.save()
+            # Asegurarse de que el usuario autenticado pertenece al grupo 'donante'
+            if request.user.groups.filter(name='donante').exists():
+                new_pet.id_donante = request.user
+            else:
+                return redirect('login')  # Redirige a una página de error si el usuario no es un donante
+
+            # Asignar un veterinario aleatorio del grupo 'veterinario'
+            vet_group = Group.objects.get(name='veterinario')
+            vets = vet_group.user_set.all()
+            if vets:
+                new_pet.id_veterinario = choice(vets)
+            else:
+                return redirect('login')  # Redirige a una página de error si no hay veterinarios
+
+            new_pet.save()
+            return redirect('Tus_mascotas')  # Redirige a la lista de mascotas después de un envío exitoso
+    else:
+        form = AddPetForm()
+
+    return render(request, 'AddPetForm.html', {'form': form})

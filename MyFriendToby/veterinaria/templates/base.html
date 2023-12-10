@@ -62,9 +62,34 @@
                                         <ul id="navigation">
                                             <li><a href="{% url 'index'%}">Inicio</a></li>
                                             <li><a href="{% url 'about'%}">Sobre nosotros</a></li>
-                                            <li><a href="{% url 'mascotas'%}">Mascotas</a></li>
-                                            <li><a href="{% url 'contact'%}">Contactanos</a></li>
+                                                {% if user.groups.all.0.name == 'donante' %}
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Mascotas
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <a class="dropdown-item" href="{% url 'mascotas'%}">Ver mascotas</a>
+                                                        <a class="dropdown-item" href="{% url 'Tus_mascotas'%}">Tus mascotas</a>
+                                                        <a class="dropdown-item" href="{% url 'añadir_mascotas'%}">Añadir mascotas</a>
+                                                    </div>
+                                                </li>
+                                                    <li><a href="{% url 'contact'%}">Contactanos</a></li>
+                                                </ul>
+                                                    {% else %}
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Mascotas
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <a class="dropdown-item" href="{% url 'mascotas'%}">Ver mascotas</a>
+                                                        <a class="dropdown-item" href="{% url 'Tus_mascotas'%}">Tus mascotas</a>
+                                                    </div>
+                                                </li>
+                                                
+                                                <li><a href="{% url 'contact'%}">Contactanos</a></li>
                                             </ul>
+                                                {% endif %}
+                                            
                                             {% else %}
                                             <ul id="navigation">
                                             <li><a href="{% url 'index'%}">Inicio</a></li>

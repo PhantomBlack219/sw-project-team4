@@ -28,6 +28,7 @@
             <p>Dinero requerido: ${{ x.get_dineromantenimiento}}</p>
             <p>Espacio necesario: {{ x.get_espaciomantenimiento}}</p>
             <p>Enfermedades: {{ x.get_enfermedades}}</p>
+            <p>Ultimo chequeo: {{ x.get_chequeo}}</p>
             <p>Próximo chequeo médico: {{ x.get_prox_chequeo}}</p>
             {% if user.groups.all.0.name == 'adoptante' %}
             {% else %}

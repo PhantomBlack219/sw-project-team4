@@ -1,73 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" type="text/css" href="./AddPetForm.css">
-</head>
-<body>
-  <div class='add-pet'>
+
+{% extends "base.html" %}
+{% load static %}
+{% block headers %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/AddPetForm.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+  
+  
+  <div class="slider-area2 slider-height2 d-flex align-items-center">
+    <div class="container">
+       <div class="row">
+          <div class="col-xl-12">
+                <div class="hero-cap text-center pt-50">
+                   <h2>Añadir Mascotas</h2>
+                </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <div class="container">
+<div class='add-pet'>
     <div class='add-pet-container'>
-      <img src='./public/logo.png' alt='Logotipo de la pagina web'/>
-      <form class='add-pet-form'>
+      <img src="{% static 'img/logo/logo.png' %}" alt='Logotipo de la pagina web'/>
+      <form class='add-pet-form' method="POST" enctype="multipart/form-data">
+       
+        {% csrf_token %}
         <label class='add-pet-label'>
-          <span>Nombre</span>
+          <span>Nombre *</span>
+          <!-- Agregamos el atributo value para mostrar el valor del campo del modelo -->
+          <!-- Agregamos el atributo id para asociar el campo con el label -->
           <input
             type='text'
-            name='name'
+            name='nombre'
+            value="{{ mascota.nombre }}"
+            id="id_nombre"
           />
         </label>
         <label class='add-pet-label'>
-          <span>Tamaño</span>
+          <span>Tamaño *</span>
+          <select name='tamaño' id="id_tamaño">
+            <option value="Grande">Grande</option>
+            <option value="Mediano">Mediano</option>
+            <option value="Pequeño">Pequeño</option>
+          </select>
+        </label>
+        <label class='add-pet-label'>
+          <span>Edad *</span>
           <input
-            list='Petsize'
-            name='size'
+            type='number'
+            name='edad'
+            value="{{ mascota.edad }}"
+            id="id_edad"
           />
-          <datalist id='Petsize'>
-            <option value='Pequeño' />
-            <option value='Mediano' />
-            <option value='Grande' />
-          </datalist>
+        </label>
+        <label class='add-pet-label'>
+          <span>Peso (kg) *</span>
+          <input
+            type='number'
+            name='peso'
+            value="{{ mascota.peso }}"
+            id="id_peso"
+          />
         </label>
         <label class='add-pet-label'>
           <span>Dinero requerido</span>
           <input
-            type='text'
-            name='moneyRequired'
+            type='number'
+            name='dineromantenimiento'
+            value="{{ mascota.dineromantenimiento }}"
+            id="id_dineromantenimiento"
           />
         </label>
         <label class='add-pet-label'>
           <span>Espacio requerido</span>
           <input
             type='text'
-            name='spaceRequired'
+            name='espaciomantenimiento'
+            value="{{ mascota.espaciomantenimiento }}"
+            id="id_espaciomantenimiento"
           />
         </label>
         <label class='add-pet-label'>
-          <span>Enfermedades</span>
+          <span>Enfermedades *</span>
           <input
             type='text'
-            name='diseases'
+            name='enfermedades'
+            value="{{ mascota.enfermedades }}"
+            id="id_enfermedades"
           />
         </label>
         <label class='add-pet-label'>
-          <span>Chequeo en </span>
+          <span>ultimo chequeo en*</span>
           <input
             type='date'
-            name='check'
+            name='chequeo'
+            value="{{ mascota.chequeo|date:'Y-m-d' }}"
+            id="id_chequeo"
           />
         </label>
         <label class='add-pet-label'>
-          <span>Agregar imagen </span>
+          <span>Agregar imagen (link) * </span>
           <input
-            type='file'
-            name='file'
+            type='text'
+            name='foto'
+            id="id_foto"
           />
         </label>
         <button>Crear mascota</button>
       </form>
     </div>
   </div>
-</body>
-</html>
+ </div>
+  </main>
+{% endblock %}

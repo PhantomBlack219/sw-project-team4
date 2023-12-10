@@ -8,9 +8,9 @@ class Mascota(models.Model):
         ('Pequeño', 'Pequeño'),
     ]
 
-    id_donante = models.ForeignKey(User, on_delete=models.CASCADE, related_name='donante')
-    id_veterinario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='veterinario')
-    id_adoptante = models.ForeignKey(User, on_delete=models.CASCADE, related_name='adoptante')
+    id_donante = models.ForeignKey(User, on_delete=models.CASCADE, related_name='donante',null=True)
+    id_veterinario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='veterinario',null=True)
+    id_adoptante = models.ForeignKey(User, on_delete=models.CASCADE, related_name='adoptante', null=True)
     adoptado = models.BooleanField(default=False)
     nombre = models.CharField(max_length=255, null=False)
     edad = models.IntegerField(null=False)
@@ -20,7 +20,7 @@ class Mascota(models.Model):
     foto = models.TextField(null=False)
     dineromantenimiento = models.IntegerField(null=True)
     espaciomantenimiento = models.CharField(max_length=255, null=True)
-    chequeo = models.DateField(null=True)
+    chequeo = models.DateField(null=False)
     prox_chequeo = models.DateField(null=True)
 
     def get_adoptadp(self):
