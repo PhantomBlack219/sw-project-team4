@@ -19,9 +19,10 @@
          </div>
       </div>
    </div>
-   {% for x in mascotas %} 
-      <div class="card-container">
-          <div class="card">
+   <div class="row">
+      {% for x in mascotas %} 
+          <div class="col-sm-4">
+              <div class="card">
             <img src="{{ x.get_foto}}" alt="Pelusa">
             <h2>{{ x.get_nombre}}</h2>
             <p>Tamaño: {{ x.get_tamaño}}</p>
@@ -40,6 +41,7 @@
       </div> 
    
       {% endfor %}
+    </div>
     
     </main>
 {% endblock %}
