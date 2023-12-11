@@ -7,7 +7,7 @@
 {% block content %}
 <main>
 
-   {% for x in mascotas %} 
+   
    <div class="slider-area2 slider-height2 d-flex align-items-center">
       <div class="container">
          <div class="row">
@@ -19,7 +19,7 @@
          </div>
       </div>
    </div>
-  
+   {% for x in mascotas %} 
       <div class="card-container">
           <div class="card">
             <img src="{{ x.get_foto}}" alt="Pelusa">
