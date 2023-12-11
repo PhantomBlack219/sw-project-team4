@@ -1,5 +1,6 @@
 main{
   background-image: url('../img/login/fondo-formularios.jpg');
+  background-repeat: repeat; 
 }
 
 .card-container {
@@ -51,4 +52,11 @@ main{
   border-radius: 4px;
   padding: 8px 16px;
   cursor: pointer;
+  transition: background-color 0.2s ease; /* Agrega una transición al color de fondo */
 }
+
+.adoptar-button:hover {
+  background-color: #B8860B; /* Cambia el color de fondo al pasar el mouse sobre el botón */
+}
+
+

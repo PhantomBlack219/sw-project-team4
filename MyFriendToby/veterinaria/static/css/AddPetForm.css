@@ -5,6 +5,11 @@ main{
   align-items: center;
 }
 
+.contenedor{
+  background-image: url('../img/login/fondo-formularios.jpg');
+  margin-top: 0px;
+}
+
 .add-pet {
   position: static;
   margin-top: 5%;
@@ -73,3 +78,5 @@ main{
 .add-pet-form > button:hover {
   background-color: #B8860B; /* Cambia el color al pasar el mouse sobre el botón */
 }
+
+
