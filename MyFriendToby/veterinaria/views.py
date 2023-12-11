@@ -168,7 +168,9 @@ def add_petForm(request):
 def edit_petForm(request, id):
     if request.method == 'POST':
         mascota = Mascota.objects.get(pk=id)
-        mascota.adoptado = request.POST.get('adoptado')
+        mascota.adoptado = False  
+        if 'adoptado' in request.POST:  
+            mascota.adoptado = True
         mascota.nombre = request.POST.get('nombre')
         mascota.edad = request.POST.get('edad')
         mascota.peso = request.POST.get('peso')
@@ -180,8 +182,8 @@ def edit_petForm(request, id):
         return render(request, 'EditPetCard.html', {'mascota': mascota})
 
 def edit_petVetForm(request, id):
+    mascota = Mascota.objects.get(pk=id)
     if request.method == 'POST':
-        mascota = Mascota.objects.get(pk=id)
         mascota.adoptado = False  
         if 'adoptado' in request.POST:  
             mascota.adoptado = True
@@ -197,8 +199,8 @@ def edit_petVetForm(request, id):
         mascota.save()
         return redirect('Tus_mascotas')
     else:
-        mascota = Mascota.objects.get(pk=id)
         return render(request, 'EditPetCardVet.html', {'mascota': mascota})
+
 
 def eliminar_mascota(request, id):
     if request.method == 'POST':

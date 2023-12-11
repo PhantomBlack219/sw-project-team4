@@ -21,7 +21,7 @@
    </div>
    <div class="row">
       {% for x in mascotas %} 
-          <div class="col-sm-4">
+          <div class="col-sm-3">
               <div class="card">
             <img src="{{ x.get_foto}}" alt="Pelusa">
             <h2>{{ x.get_nombre}}</h2>
@@ -42,6 +42,6 @@
    
       {% endfor %}
     </div>
-    
+
     </main>
 {% endblock %}
