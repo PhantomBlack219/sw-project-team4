@@ -18,6 +18,7 @@
   </div>
 </div>
 
+<div class="contenedor">
 <div class="container">
   <div class='add-pet'>
     <div class='add-pet-container'>
@@ -78,5 +79,26 @@
     </div>
   </div>
 </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('.add-pet-form');
+  
+      form.addEventListener('submit', function (event) {
+        const nombre = document.getElementById('id_nombre').value.trim();
+        const edad = document.getElementById('id_edad').value.trim();
+        const peso = document.getElementById('id_peso').value.trim();
+        const adoptado = document.getElementById('adoptado').checked;
+        const fechaChequeo = document.getElementById('id_chequeo').value.trim();
+        const fechaProxChequeo = document.getElementById('id_prox_chequeo').value.trim();
+  
+        if (!nombre || !edad || !peso || !fechaChequeo || !fechaProxChequeo) {
+          event.preventDefault(); 
+          alert('Por favor, completa todos los campos y selecciona las fechas.');
+        }
+      });
+    });
+  </script>
 
 {% endblock %}
