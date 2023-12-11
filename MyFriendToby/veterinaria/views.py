@@ -182,7 +182,7 @@ def edit_petForm(request, id):
 def edit_petVetForm(request, id):
     if request.method == 'POST':
         mascota = Mascota.objects.get(pk=id)
-        mascota.adoptado = request.POST.get('adoptado', 'False') == 'True'
+        mascota.adoptado = request.POST.get('adoptado') == 'on'
         mascota.nombre = request.POST.get('nombre')
         mascota.edad = request.POST.get('edad')
         mascota.peso = request.POST.get('peso')
