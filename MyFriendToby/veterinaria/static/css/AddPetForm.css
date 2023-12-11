@@ -1,15 +1,30 @@
+main{
+  background-image: url('../img/login/fondo-formularios.jpg');
+  background-repeat: repeat; 
+  justify-content: center;
+  align-items: center;
+}
+
 .add-pet {
   position: static;
   margin-top: 5%;
 }
 
-.add-pet-container{
+.add-pet-container {
+  padding-top: 5px;
+  padding-bottom: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 5% auto; 
 }
+
 
 .add-pet-container > img{
   cursor: pointer;
@@ -52,4 +67,9 @@
   background-color: #03045e;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-pet-form > button:hover {
+  background-color: #B8860B; /* Cambia el color al pasar el mouse sobre el botón */
 }
